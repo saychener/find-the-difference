@@ -1,0 +1,30 @@
+
+#include<iostream>
+#include<cstring>
+#include<vector>
+using namespace std;
+int find(string s){
+	int count = 0;
+	vector<char> temp;
+	for (int i = 0; i < s.length(); i++){
+		vector <char>::iterator res = find(temp.begin(), temp.end(), s[i]);
+		if (res==temp.end()){
+			temp.push_back(s[i]);
+			for (int j = i + 1; j < s.length(); j++){
+				if (s[i] == s[j]) count += 1;
+			}
+			if (!count) return i;
+			count = 0;
+		}
+		
+	}
+	return -1;
+}
+int main(){
+	//string str = "leetcode";
+	//string str = "chche";
+	string str = "loveleetcode";
+	cout << find(str) << endl;
+	system("pause");
+	return 0;
+}
